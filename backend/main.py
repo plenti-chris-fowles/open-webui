@@ -88,6 +88,7 @@ from config import (
     WEBUI_NAME,
     WEBUI_URL,
     WEBUI_AUTH,
+    WEBUI_BUILTIN_AUTH,
     ENV,
     VERSION,
     CHANGELOG,
@@ -1993,6 +1994,7 @@ async def get_app_config():
         "default_prompt_suggestions": webui_app.state.config.DEFAULT_PROMPT_SUGGESTIONS,
         "features": {
             "auth": WEBUI_AUTH,
+            "builtin_auth": WEBUI_BUILTIN_AUTH,
             "auth_trusted_header": bool(webui_app.state.AUTH_TRUSTED_EMAIL_HEADER),
             "enable_signup": webui_app.state.config.ENABLE_SIGNUP,
             "enable_web_search": rag_app.state.config.ENABLE_RAG_WEB_SEARCH,

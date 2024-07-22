@@ -35,6 +35,7 @@ from utils.webhook import post_webhook
 from constants import ERROR_MESSAGES, WEBHOOK_MESSAGES
 from config import (
     WEBUI_AUTH,
+    WEBUI_BUILTIN_AUTH,
     WEBUI_AUTH_TRUSTED_EMAIL_HEADER,
     WEBUI_AUTH_TRUSTED_NAME_HEADER,
 )
@@ -159,6 +160,8 @@ async def signin(request: Request, response: Response, form_data: SigninForm):
             )
 
             user = Auths.authenticate_user(admin_email.lower(), admin_password)
+    elif WEBUI_BUILTIN_AUTH == False:
+        raise HTTPException(400, detail=ERROR_MESSAGES.INVALID_AUTH_METHOD)
     else:
         user = Auths.authenticate_user(form_data.email.lower(), form_data.password)
 
